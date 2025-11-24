@@ -1,6 +1,11 @@
 import express from 'express'
+import hbs from 'hbs';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+//var hbs = require('hbs');
+
+
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -8,12 +13,30 @@ const __dirname = dirname(__filename);
 const app = express()
 const port = 4200
 
+
+
+
+//Handlebars
+app.set('view engine', 'hbs');
+hbs.registerPartials(__dirname + '/views/partials');
+
 // Sevir contenido estatico
 app.use( express.static('public') )
 
+app.get('/',  (req, res) => {
+  res.render ('home', {
+    nombre: 'Daniel Ortega',
+    titulo: 'Curso de Node'
+  });
+})
 
-app.get('/holamundo',  (req, res) => {
-  res.send('Hello World!!!! en su respectiva ruta')
+
+app.get('/generic',  (req, res) => {
+  res.sendFile(__dirname + '/public/generic.html')
+})
+
+app.get('/elements',  (req, res) => {
+  res.sendFile(__dirname + '/public/elements.html')
 })
 
 app.get(/(.*)/,  (req, res) => {
