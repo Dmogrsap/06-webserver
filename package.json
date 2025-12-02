@@ -2,6 +2,8 @@
   "name": "06-webserver",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +13,7 @@
   "description": "",
   "dependencies": {
     "express": "^5.1.0",
-    "hbs": "^4.2.0"
+    "hbs": "^4.2.0",
+    "start": "node app.js"
   }
 }

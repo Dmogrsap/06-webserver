@@ -31,12 +31,24 @@ app.get('/',  (req, res) => {
 })
 
 
+// app.get('/generic',  (req, res) => {
+//   res.sendFile(__dirname + '/public/generic.html')
+// })
 app.get('/generic',  (req, res) => {
-  res.sendFile(__dirname + '/public/generic.html')
+  res.render ('generic', {
+    nombre: 'Daniel Ortega',
+    titulo: 'Curso de Node'
+  });
 })
 
+// app.get('/elements',  (req, res) => {
+//   res.sendFile(__dirname + '/public/elements.html')
+// })
 app.get('/elements',  (req, res) => {
-  res.sendFile(__dirname + '/public/elements.html')
+  res.render ('elements', {
+    nombre: 'Daniel Ortega',
+    titulo: 'Curso de Node'
+  });
 })
 
 app.get(/(.*)/,  (req, res) => {
