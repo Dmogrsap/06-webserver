@@ -1,7 +1,12 @@
 import express from 'express'
 import hbs from 'hbs';
+import dotenv from 'dotenv';
+dotenv.config();
+//
+// require('dotenv').config();
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+
 //var hbs = require('hbs');
 
 
@@ -11,7 +16,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express()
-const port = 4200
+// const port = process.env.PORT || 3000;
+const port = 8081;
+
 
 
 
@@ -20,8 +27,8 @@ const port = 4200
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
-// Sevir contenido estatico
-app.use( express.static('public') )
+// Servir contenido estático (ruta absoluta usando __dirname)
+app.use( express.static(__dirname + '/public') )
 
 app.get('/',  (req, res) => {
   res.render ('home', {
