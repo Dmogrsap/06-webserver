@@ -16,11 +16,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express()
-// const port = process.env.PORT || 3000;
+console.log('app.js starting - pid=' + process.pid);
+
 const port = process.env.PORT || 3000;
-
-
-
 
 
 //Handlebars
@@ -28,7 +26,11 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
 // Servir contenido estático (ruta absoluta usando __dirname)
+
 app.use( express.static(__dirname + '/public') )
+
+// simple health endpoint
+app.get('/health', (req, res) => res.status(200).send('OK'));
 
 app.get('/',  (req, res) => {
   res.render ('home', {
@@ -59,9 +61,9 @@ app.get('/elements',  (req, res) => {
 })
 
 app.get(/(.*)/,  (req, res) => {
-  res.sendFile(__dirname + '/public/404.html')
+  res.sendFile(__dirname + '/back/404.html')
 })
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)
-})
+});
